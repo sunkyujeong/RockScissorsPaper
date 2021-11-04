@@ -37,21 +37,17 @@
       paper: '-430px',
     }
 
-    let computerChoice = '0';
+    let computerChoice = 'scissors';
     const changeComputerHand = () => {
-      if (computerChoice === '0') {
-        computerChoice = '-216px';
-        $computer.style.background = `url(${IMG_URL}) -216px 0`;
-        $computer.style.backgroundSize = 'auto 200px';
-      } else if (computerChoice === '-216px') {
-        computerChoice = '-430px';
-        $computer.style.background = `url(${IMG_URL}) -430px 0`;
-        $computer.style.backgroundSize = 'auto 200px';
-      } else if (computerChoice === '-430px') {
-        computerChoice = '0';
-        $computer.style.background = `url(${IMG_URL}) 0 0`;
-        $computer.style.backgroundSize = 'auto 200px';
+      if (computerChoice === 'scissors') {
+        computerChoice = 'rock';
+      } else if (computerChoice === 'rock') {
+        computerChoice = 'paper';
+      } else if (computerChoice === 'paper') {
+        computerChoice = 'scissors';
       }
+      $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
+      $computer.style.backgroundSize = 'auto 200px';
     };
     setInterval(changeComputerHand, 50);
   </script>
