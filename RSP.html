@@ -50,13 +50,18 @@
       $computer.style.backgroundSize = 'auto 200px';
     };
     let intervalId = setInterval(changeComputerHand, 50);
+    let clickable = true;
     const clickButton = () => {
-      clearInterval(intervalId);
-      setTimeout(() => {
-        intervalId = setInterval(changeComputerHand, 50);
-      }, 1000);
+      if (clickable) {
+        clearInterval(intervalId);
+        clickable = false;
+        setTimeout(() => {
+          clickable = true;
+          intervalId = setInterval(changeComputerHand, 50);
+        }, 1000);
+      }
     };
-    
+
     $rock.addEventListener('click', clickButton);
     $scissors.addEventListener('click', clickButton);
     $paper.addEventListener('click', clickButton);
