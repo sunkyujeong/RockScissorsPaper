@@ -57,6 +57,8 @@
     let intervalId = setInterval(changeComputerHand, 50);
     let clickable = true;
     let score = 0;
+    let me = 0;
+    let computer = 0;
 
     const clickButton = () => {
       if (clickable) {
@@ -73,20 +75,27 @@
 
         let message;
         if ([2, -1].includes(diff)) {
-          score += 1;
+          me += 1;
           message = '승리';
         } else if ([-2, 1].includes(diff)) {
-          score -= 1;
+          computer += 1;
           message = '패배';
         } else {
           message = '무승부';
         }
-        $score.textContent = `${message} 총: ${score}점`;
-        setTimeout(() => {
-          clickable = true;
-          intervalId = setInterval(changeComputerHand, 50);
-        }, 1000);
+        if (me >= 3) {
+          $score.textContent = `승리를 축하합니다. ${me} : ${computer}`;
+        } else if (computer >= 3) {
+          $score.textContent = `패배하였습니다. ${me} : ${computer}`;
+        } else {
+          $score.textContent = `${message} ${me} : ${computer}`;
+          setTimeout(() => {
+            clickable = true;
+            intervalId = setInterval(changeComputerHand, 50);
+          }, 1000);
+        }
       }
+
     };
 
     $rock.addEventListener('click', clickButton);
